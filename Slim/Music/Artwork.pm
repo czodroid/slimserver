@@ -822,9 +822,8 @@ sub precacheAllArtwork {
 
 	 	$i = 0;
 
-		while ( my ($albumId, $trackCount) = each %artCount ) {
-
-			next unless $trackCount > 1;
+		# Always pick the album artwork from the first track
+		while ( my ($albumId) = each %artCount ) {
 
 			$sth_get_album_art->execute($albumId);
 			my ($coverId) = $sth_get_album_art->fetchrow_array;
